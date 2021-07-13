@@ -1,3 +1,3 @@
-struct SecureAggregationCore {
-    var text = "Hello, World!"
+public struct SecureAggregationCore {
+    public static var text = "Hello, World!"
 }
