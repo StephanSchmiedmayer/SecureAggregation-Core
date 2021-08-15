@@ -9,16 +9,13 @@ import Foundation
 import CryptoKit
 
 @available(macOS 10.15, *)
-public struct SAConfiguration: Codable {
-    /// Security parameter
-    let k: Int
-    
+public struct Configuration: Codable {
     /// Number of users
-    let n: Int
+    let numberOfUsers: Int
     
     /// Threshold value
-    let t: Int
+    let threshold: Int
     
     /// ZmR
-    let r: Int
+    let modulus: Int
 }
