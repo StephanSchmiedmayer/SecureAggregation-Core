@@ -10,8 +10,8 @@ import Vapor
 public struct Round0 {
     private init() {}
     
-    public struct User: Content {
-        
+    public struct Client: Content, Hashable {
+        public let id: Int
     }
     
     public struct Server: Content {

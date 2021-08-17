@@ -7,9 +7,15 @@
 
 import Foundation
 import CryptoKit
+import Vapor
 
-@available(macOS 10.15, *)
-public struct Configuration: Codable {
+public struct SAConfiguration: Content {
+    public init(numberOfUsers: Int, threshold: Int, modulus: Int) {
+        self.numberOfUsers = numberOfUsers
+        self.threshold = threshold
+        self.modulus = modulus
+    }
+    
     /// Number of users
     let numberOfUsers: Int
     
