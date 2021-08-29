@@ -10,8 +10,11 @@ import Vapor
 public struct Round1 {
     private init() {}
     
-    public struct Client: Content, Hashable {
-        public let id: Int
+    /// Round 1 message from Client to Server
+    public struct Client: Content, SAClientMessage {
+        public let userID: UserID
+        
+        
     }
     
     public struct Server: Content {

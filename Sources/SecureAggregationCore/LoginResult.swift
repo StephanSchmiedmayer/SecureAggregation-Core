@@ -7,9 +7,13 @@
 
 import Vapor
 
-public struct LoginResult: Content {
-    public init(userID: Int) {
+public struct LoginResult: Content, SAServerMessage {
+    public let userID: UserID
+    public let nextMessageAt: Date
+    
+    
+    public init(userID: UserID, nextMessageAt: Date) {
         self.userID = userID
+        self.nextMessageAt = nextMessageAt
     }
-    public let userID: Int
 }
