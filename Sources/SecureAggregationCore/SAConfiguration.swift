@@ -9,6 +9,7 @@ import Foundation
 import CryptoKit
 import Vapor
 
+/// Configuration of a Secure Aggregation run
 public struct SAConfiguration: Content {
     public init(numberOfUsers: Int, threshold: Int, modulus: Int) {
         self.numberOfUsers = numberOfUsers
