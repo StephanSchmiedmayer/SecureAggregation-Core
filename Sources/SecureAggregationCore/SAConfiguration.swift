@@ -18,11 +18,11 @@ public struct SAConfiguration: Content {
     }
     
     /// Number of users
-    let numberOfUsers: Int
+    public let numberOfUsers: Int
     
     /// Threshold value
-    let threshold: Int
+    public let threshold: Int
     
     /// ZmR
-    let modulus: Int
+    public let modulus: Int
 }
