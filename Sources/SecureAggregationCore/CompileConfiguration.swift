@@ -10,4 +10,7 @@ import CryptoKit
 
 public typealias SAPubKeyCurve = Curve25519
 public typealias UserID = Int
-//public typealias UserAuthentication = Int
+/// Type of the value aggregated
+///
+/// Needs to be replaced with a generic protocol etc.
+public typealias ValueType = Int
