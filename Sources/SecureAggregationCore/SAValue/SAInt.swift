@@ -6,11 +6,12 @@
 //
 
 import Foundation
+import CryptoKit
 
 public struct SAInt: SAWrappedValue {
     
-    typealias Value = Int
-    typealias Modulus = Int
+    public typealias Value = Int
+    public typealias Modulus = Int
     
     let value: Value
     
