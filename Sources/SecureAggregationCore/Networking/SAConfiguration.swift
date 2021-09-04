@@ -20,7 +20,7 @@ public struct SAConfiguration: Content {
         self.modulus = modulus
         self.salt = salt
     }
-    
+    // TODO: add Security parameters
     /// Number of users
     public let numberOfUsers: Int
     
