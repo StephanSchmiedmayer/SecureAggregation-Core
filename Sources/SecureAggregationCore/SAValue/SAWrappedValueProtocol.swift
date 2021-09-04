@@ -28,6 +28,8 @@ public protocol SAWrappedValue: Content {
     
     // MARK: - cryptographic operations
     
+    /// Creates a new `Self` that canceles out with switched userIDs
+    ///
     /// Needs ot take into account ownID and otherID so that for any valid  `seed`, `mod`, `a`, `b`:
     ///
     ///     let mask = mask(seed, mod)
