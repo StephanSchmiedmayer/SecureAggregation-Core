@@ -8,7 +8,7 @@
 import Foundation
 import Vapor
 
-public struct SetupResult: Content, SAServerMessage {
+public struct SetupResult<Modulus: Content>: Content, SAServerMessage {
     public let nextMessageAt: Date
-    public let config: SAConfiguration
+    public let config: SAConfiguration<Modulus>
 }

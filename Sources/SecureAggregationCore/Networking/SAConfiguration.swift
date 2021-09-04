@@ -10,10 +10,10 @@ import CryptoKit
 import Vapor
 
 /// Configuration of a Secure Aggregation run
-public struct SAConfiguration: Content {
+public struct SAConfiguration<Modulus: Content>: Content {
     public init(numberOfUsers: Int,
                 threshold: Int,
-                modulus: Int,
+                modulus: Modulus,
                 salt: Data) {
         self.numberOfUsers = numberOfUsers
         self.threshold = threshold
@@ -28,7 +28,7 @@ public struct SAConfiguration: Content {
     public let threshold: Int
     
     /// ZmR
-    public let modulus: Int
+    public let modulus: Modulus
     
     /// Salt used for encryption during the Secure aggregation
     public let salt: Data
