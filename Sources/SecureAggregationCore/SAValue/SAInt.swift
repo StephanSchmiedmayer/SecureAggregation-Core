@@ -27,10 +27,22 @@ public struct SAInt: SAWrappedValue {
         SAInt((value + rhs.value) % mod)
     }
     
-    public static func mask(forSeed seed: SharedSecret, mod: Int, ownID: UserID, otherID: UserID) -> SAInt {
+    public func cancelling(ownID: UserID, otherID: UserID) -> SAInt {
         guard ownID != otherID else {
             return SAInt(0)
         }
-        return SAInt(seed.hashValue % mod * (ownID < otherID ? 1 : -1))
+        return SAInt(value * (ownID < otherID ? 1 : -1))
     }
+    
+    public static func mask(forSeed seed: SharedSecret, mod: Int) -> SAInt {
+        SAInt(seed.hashValue % mod)
+    }
+
+    
+//    public static func mask(forSeed seed: SharedSecret, mod: Int, ownID: UserID, otherID: UserID) -> SAInt {
+//        guard ownID != otherID else {
+//            return SAInt(0)
+//        }
+//        return SAInt(seed.hashValue % mod * (ownID < otherID ? 1 : -1))
+//    }
 }
