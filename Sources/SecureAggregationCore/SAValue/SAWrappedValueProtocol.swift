@@ -26,5 +26,17 @@ public protocol SAWrappedValue: Content {
 
     // MARK: - cryptographic operations
     /// Creates a mask from a seed
-    static func mask(forSeed seed: SharedSecret, mod: Modulus) -> Self
+    ///
+    /// Needs ot take into account ownID and otherID so that for any valid `seed`, `mod`, `a`, `b`
+    ///
+    ///     let maskA = mask(seed, mod, a, b)
+    ///     let maskB = mask(seed, mod, b, a)
+    ///     let zero = maskA.add(maskB, mod)
+    ///     value.add(zero, mod) == value
+    ///
+    /// holds (meaning x is a representation of 0 / masks cancel each other out). This is curtial to SecureAggregation.
+    ///
+    /// - Important: Ciritical for Security of the protocol
+    ///
+    static func mask(forSeed seed: SharedSecret, mod: Modulus, ownID: UserID, otherID: UserID) -> Self
 }
