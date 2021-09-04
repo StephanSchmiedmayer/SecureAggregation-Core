@@ -11,10 +11,14 @@ import Vapor
 
 /// Configuration of a Secure Aggregation run
 public struct SAConfiguration: Content {
-    public init(numberOfUsers: Int, threshold: Int, modulus: Int) {
+    public init(numberOfUsers: Int,
+                threshold: Int,
+                modulus: Int,
+                salt: Data) {
         self.numberOfUsers = numberOfUsers
         self.threshold = threshold
         self.modulus = modulus
+        self.salt = salt
     }
     
     /// Number of users
@@ -25,4 +29,7 @@ public struct SAConfiguration: Content {
     
     /// ZmR
     public let modulus: Int
+    
+    /// Salt used for encryption during the Secure aggregation
+    public let salt: Data
 }

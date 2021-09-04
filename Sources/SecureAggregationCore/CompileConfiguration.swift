@@ -11,7 +11,7 @@ import CryptoKit
 // MARK: - Security parameters
 public typealias SAPubKeyCurve = Curve25519
 public typealias SA_HKDF_HashFunction = SHA256
-public typealias SASymmetricCipher = AES
+public typealias SASymmetricCipher = AES.GCM
 
 // MARK: - Other
 public typealias UserID = Int
