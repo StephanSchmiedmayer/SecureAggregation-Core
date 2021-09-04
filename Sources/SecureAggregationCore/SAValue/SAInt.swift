@@ -31,6 +31,6 @@ public struct SAInt: SAWrappedValue {
         guard ownID != otherID else {
             return SAInt(0)
         }
-        SAInt(seed.hashValue % mod * (ownID < otherID ? 1 : -1))
+        return SAInt(seed.hashValue % mod * (ownID < otherID ? 1 : -1))
     }
 }
