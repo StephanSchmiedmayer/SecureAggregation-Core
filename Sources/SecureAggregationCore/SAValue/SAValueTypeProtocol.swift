@@ -25,5 +25,5 @@ public protocol SAWrappedValue {
 
     // MARK: - cryptographic operations
     /// Creates a mask from a seed
-    func mask(forSeed seed: SharedSecret, mod: Modulus) -> Self
+    static func mask(forSeed seed: SharedSecret, mod: Modulus) -> Self
 }
