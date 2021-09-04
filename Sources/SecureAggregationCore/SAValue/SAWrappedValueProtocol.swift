@@ -7,13 +7,14 @@
 
 import Foundation
 import CryptoKit
+import Vapor
 
 /// A wrapper providing all necessary operations for a secure aggregation
-public protocol SAWrappedValue {
+public protocol SAWrappedValue: Content {
     /// Valuetype that gets wrapped
-    associatedtype Value
+    associatedtype Value: Content
     /// Value of the modulus defined for the type
-    associatedtype Modulus
+    associatedtype Modulus: Content
     
     init(_ value: Value)
         
