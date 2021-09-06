@@ -19,12 +19,14 @@ public protocol SAWrappedValue: Content {
     init(_ value: Value)
         
     // MARK: - arithmetic operations
-    
+    // TODO: real arithmetic description
     /// Modulo addition
     func add(_ rhs: Self, mod: Modulus) -> Self
     /// Modulo subtraction
     func sub(_ rhs: Self, mod: Modulus) -> Self
     
+    /// Representation of Zero
+    var zero: Self { get }
     
     // MARK: - cryptographic operations
     

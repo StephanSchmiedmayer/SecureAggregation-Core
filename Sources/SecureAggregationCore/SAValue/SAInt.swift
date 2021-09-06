@@ -27,6 +27,8 @@ public struct SAInt: SAWrappedValue {
         SAInt((value + rhs.value) % mod)
     }
     
+    public var zero = SAInt(0)
+    
     public func cancelling(ownID: UserID, otherID: UserID) -> SAInt {
         guard ownID != otherID else {
             return SAInt(0)
