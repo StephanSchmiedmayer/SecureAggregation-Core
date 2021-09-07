@@ -27,7 +27,7 @@ public struct SAInt: SAWrappedValue {
         SAInt((value + rhs.value) % mod)
     }
     
-    public var zero {
+    static public var zero: SAInt {
         SAInt(0)
     }
     

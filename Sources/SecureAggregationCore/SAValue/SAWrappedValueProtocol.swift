@@ -26,7 +26,7 @@ public protocol SAWrappedValue: Content {
     func sub(_ rhs: Self, mod: Modulus) -> Self
     
     /// Representation of Zero
-    var zero: Self { get }
+    static var zero: Self { get }
     
     // MARK: - cryptographic operations
     
