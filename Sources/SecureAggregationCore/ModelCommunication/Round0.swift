@@ -8,25 +8,37 @@
 import Vapor
 
 public struct Round0 {
-    private init() {}
+    fileprivate init() {}
+    
+    /// Public keys of the user with `UserID` `userID`
+    public struct PublicKeysOfUser {
+        /// User who ones the private keys corresponding to the public keys
+        public let userID: UserID
+        public let c_publicKey: SAPubKeyCurve.KeyAgreement.PublicKey
+        public let s_publicKey: SAPubKeyCurve.KeyAgreement.PublicKey
+        
+        public init(userID: UserID,
+                    c_publicKey: SAPubKeyCurve.KeyAgreement.PublicKey,
+                    s_publicKey: SAPubKeyCurve.KeyAgreement.PublicKey) {
+            self.userID = userID
+            self.c_publicKey = c_publicKey
+            self.s_publicKey = s_publicKey
+        }
+    }
     
     /// Round 0 Message from Client to Server
     ///
     /// - Important: Gets completely forwarded in `Round0.Server`
-    public struct Client: Content, SAClientMessage {
-        public let userID: UserID
-        public let c_u_PK: Data
-        public let s_u_PK: Data
-                
-        init(userID: UserID, c_u_PK: SAPubKeyCurve.KeyAgreement.PublicKey, s_u_PK: SAPubKeyCurve.KeyAgreement.PublicKey) {
-            self.userID = userID
-            self.c_u_PK = c_u_PK.rawRepresentation
-            self.s_u_PK = s_u_PK.rawRepresentation
+    public struct ClientData {
+        public let publicKeyInformation: PublicKeysOfUser
+        
+        public init(publicKeyInformation: PublicKeysOfUser) {
+            self.publicKeyInformation = publicKeyInformation
         }
     }
     
     /// Round 0 Message from Server to Client
-    public struct Server: Content {
-        public let clientMessage: [Round0.Client]
+    public struct ServerData {
+        public let clientMessage: [PublicKeysOfUser]
     }
 }
