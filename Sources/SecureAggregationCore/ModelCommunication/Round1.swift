@@ -8,16 +8,15 @@
 import Vapor
 
 public struct Round1 {
-    private init() {}
+    
+    fileprivate init() {}
     
     /// Round 1 message from Client to Server
-    public struct Client: Content, SAClientMessage {
-        public let userID: UserID
-        
-        
+    public struct Client {
+//        var encryptedShares: [Model.EncryptedShare]
     }
     
-    public struct Server: Content {
+    public struct Server {
         
     }
 }
