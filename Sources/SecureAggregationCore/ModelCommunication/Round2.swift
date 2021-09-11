@@ -10,6 +10,11 @@ extension Model {
     public struct MaskedValueFromUser<Value: SAWrappedValue> {
         public let maskedValue: Value
         public let origin: UserID
+        
+        public init(maskedValue: Value, origin: UserID) {
+            self.maskedValue = maskedValue
+            self.origin = origin
+        }
     }
     
     public struct Round2 {
