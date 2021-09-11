@@ -7,14 +7,19 @@
 
 import Vapor
 extension Model {
+    public struct MaskedValueFromUser<Value: SAWrappedValue> {
+        public let maskedValue: Value
+        public let origin: UserID
+    }
+    
     public struct Round2 {
         private init() {}
         
         public struct ClientData<Value: SAWrappedValue> {
-            public let value: Value
+            public let wrappedValue: MaskedValueFromUser<Value>
             
-            public init(value: Value) {
-                self.value = value
+            public init(wrappedValue: MaskedValueFromUser<Value>) {
+                self.wrappedValue = wrappedValue
             }
         }
         
