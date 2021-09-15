@@ -5,22 +5,13 @@
 //  Created by stephan on 16.08.21.
 //
 
-import Vapor
-extension Model {
-    public struct MaskedValueFromUser<Value: SAWrappedValue> {
-        public let maskedValue: Value
-        public let origin: UserID
-        
-        public init(maskedValue: Value, origin: UserID) {
-            self.maskedValue = maskedValue
-            self.origin = origin
-        }
-    }
-    
+import Foundation
+
+extension Model {    
     public struct Round2 {
         private init() {}
         
-        public struct ClientData<Value: SAWrappedValue> {
+        public struct ClientData<Value: SAWrappedValue>: Codable {
             public let wrappedValue: MaskedValueFromUser<Value>
             
             public init(wrappedValue: MaskedValueFromUser<Value>) {
@@ -28,7 +19,7 @@ extension Model {
             }
         }
         
-        public struct ServerData {
+        public struct ServerData: Codable {
             public let remainingUsers: [UserID]
             
             public init(remainingUsers: [UserID]) {

@@ -52,4 +52,30 @@ public struct Model {
             self.share = share
         }
     }
+    
+    /// Public keys of the user with `UserID` `userID`
+    public struct PublicKeysOfUser {
+        /// User who ones the private keys corresponding to the public keys
+        public let userID: UserID
+        public let c_publicKey: SAPubKeyCurve.KeyAgreement.PublicKey
+        public let s_publicKey: SAPubKeyCurve.KeyAgreement.PublicKey
+        
+        public init(userID: UserID,
+                    c_publicKey: SAPubKeyCurve.KeyAgreement.PublicKey,
+                    s_publicKey: SAPubKeyCurve.KeyAgreement.PublicKey) {
+            self.userID = userID
+            self.c_publicKey = c_publicKey
+            self.s_publicKey = s_publicKey
+        }
+    }
+    
+    public struct MaskedValueFromUser<Value: SAWrappedValue>: Codable {
+        public let maskedValue: Value
+        public let origin: UserID
+        
+        public init(maskedValue: Value, origin: UserID) {
+            self.maskedValue = maskedValue
+            self.origin = origin
+        }
+    }
 }

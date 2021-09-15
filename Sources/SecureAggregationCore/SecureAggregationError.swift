@@ -18,3 +18,8 @@ public enum SecureAggregationError: Error {
     case invalidStateTransition
     case protocolAborted(reason: SecureAggregationProtocolError)
 }
+
+public enum SecureAggregationNetworkError: Error {
+    case decodingError
+    case cryptographicError
+}

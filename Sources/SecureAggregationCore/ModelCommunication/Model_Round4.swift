@@ -5,7 +5,7 @@
 //  Created by stephan on 16.08.21.
 //
 
-import Vapor
+import Foundation
 
 extension Model {
     public struct Round4 {
@@ -34,7 +34,7 @@ extension Model {
         }
 
         
-        public struct ClientData {
+        public struct ClientData: Codable {
             public let s_uv: [AdressedShare]
             public let b_uv: [AdressedShare]
             
@@ -44,7 +44,7 @@ extension Model {
             }
         }
         
-        public struct ServerData<Value: SAWrappedValue> {
+        public struct ServerData<Value: SAWrappedValue>: Codable {
             public let value: Value
             
             public init(value: Value) {
