@@ -16,11 +16,24 @@ public enum SAHTTPMethod: String {
 }
 
 public struct SARESTInfo {
-    /// URL relative to the base URL of the server / URL of this API
-    public let relativeURL: String
+    /// The part of the URL thats shared between all endpoints of this API
+    public let commonBaseURL: String = "SecureAggregation"
+    
+    /// The differentiating (end-) part of the URL
+    public let differentiatingRelativeURL: String
+    
+    /// URL relative to the base URL of the server / URL of this API e.g. `http://127.0.0.1:8080/<fullRelativeURL>`
+    public var fullRelativeURL: String {
+        commonBaseURL + "/" + differentiatingRelativeURL
+    }
     
     /// REST method
     public let method: SAHTTPMethod
+    
+    init(differentiatingRelativeURL: String, method: SAHTTPMethod) {
+        self.differentiatingRelativeURL = differentiatingRelativeURL
+        self.method = method
+    }
 }
 
 /// Definition of the basic (REST) API for the BasicSecureAggregationController
@@ -93,8 +106,12 @@ public enum SABasicAPI: String, CaseIterable {
         }
     }
     
+    var basePath: String {
+        "SecureAggregation"
+    }
+    
     /// Convenience method using the raw value of self as the relativeURL of RESTInfo
     private func restInfo(method: SAHTTPMethod) -> SARESTInfo {
-        return SARESTInfo(relativeURL: self.rawValue, method: method)
+        return SARESTInfo(differentiatingRelativeURL: self.rawValue, method: method)
     }
 }
