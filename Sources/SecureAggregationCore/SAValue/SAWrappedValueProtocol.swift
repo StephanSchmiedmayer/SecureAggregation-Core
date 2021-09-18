@@ -48,4 +48,6 @@ public protocol SAWrappedValue: Content {
     ///
     /// - Important: Ciritical for Security of the protocol
     static func mask(forSeed seed: SharedSecret, mod: Modulus) -> Self
+    
+    var description: String { get }
 }

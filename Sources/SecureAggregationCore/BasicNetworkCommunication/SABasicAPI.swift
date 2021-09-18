@@ -10,7 +10,7 @@ import Foundation
 /// All rest api methods used in the API
 ///
 /// Raw value = HTTPMethod String
-public enum HTTPMethod: String {
+public enum SAHTTPMethod: String {
     case get = "GET"
     case post = "POST"
 }
@@ -20,7 +20,7 @@ public struct SARESTInfo {
     public let relativeURL: String
     
     /// REST method
-    public let method: HTTPMethod
+    public let method: SAHTTPMethod
 }
 
 /// Definition of the basic (REST) API for the BasicSecureAggregationController
@@ -94,7 +94,7 @@ public enum SABasicAPI: String, CaseIterable {
     }
     
     /// Convenience method using the raw value of self as the relativeURL of RESTInfo
-    private func restInfo(method: HTTPMethod) -> SARESTInfo {
+    private func restInfo(method: SAHTTPMethod) -> SARESTInfo {
         return SARESTInfo(relativeURL: self.rawValue, method: method)
     }
 }
