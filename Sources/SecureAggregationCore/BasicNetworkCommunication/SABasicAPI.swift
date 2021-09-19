@@ -40,6 +40,7 @@ public struct SARESTInfo {
 ///
 /// Raw value represents the URL relative to the base URL of the server / URL of this API
 public enum SABasicAPI: String, CaseIterable {
+    case reset
     case start
     case login
     case finishLogin
@@ -63,6 +64,8 @@ public enum SABasicAPI: String, CaseIterable {
     
     public var info: SARESTInfo {
         switch self {
+        case .reset:
+            return restInfo(method: .post)
         case .start:
             return restInfo(method: .post)
         case .login:

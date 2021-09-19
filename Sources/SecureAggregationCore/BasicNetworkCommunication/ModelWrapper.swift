@@ -17,6 +17,12 @@ public protocol ModelWrapper: Content {
     func unwrap() throws -> WrappedModel
 }
 
+extension ModelWrapper {
+    public func encode() throws -> Data {
+        try JSONEncoder().encode(self)
+    }
+}
+
 extension Array where Element: ModelWrapper {
     /// Unwrapps all Elements according to `ModelWrapper.unwrap()`
     ///
