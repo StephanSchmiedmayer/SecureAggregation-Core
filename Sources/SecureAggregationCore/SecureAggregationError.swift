@@ -21,5 +21,6 @@ public enum SecureAggregationError: Error {
 
 public enum SecureAggregationNetworkError: Error {
     case decodingError
+    case encodingError
     case cryptographicError
 }
