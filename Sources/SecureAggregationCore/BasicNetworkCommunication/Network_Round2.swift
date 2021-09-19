@@ -16,11 +16,11 @@ extension Network {
             
             public let wrappedValue: Model.Round2.ClientData<Value>
 
-            public init(_ wrappedModel: Model.Round2.ClientData<Value>) throws {
+            public init(_ wrappedModel: Model.Round2.ClientData<Value>) {
                 self.wrappedValue = wrappedModel
             }
             
-            public func unwrap() throws -> Model.Round2.ClientData<Value> {
+            public func unwrap() -> Model.Round2.ClientData<Value> {
                 return wrappedValue
             }
         }
@@ -30,11 +30,11 @@ extension Network {
             
             public let wrappedValue: Model.Round2.ServerData
             
-            public init(_ wrappedModel: Model.Round2.ServerData) throws {
+            public init(_ wrappedModel: Model.Round2.ServerData) {
                 self.wrappedValue = wrappedModel
             }
             
-            public func unwrap() throws -> Model.Round2.ServerData {
+            public func unwrap() -> Model.Round2.ServerData {
                 return wrappedValue
             }
         }

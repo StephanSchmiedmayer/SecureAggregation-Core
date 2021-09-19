@@ -38,7 +38,6 @@ extension Network {
             public func unwrap() throws -> Model.Round0.ServerData {
                 return Model.Round0.ServerData(collectedData: try collectedData.unwrap())
             }
-
         }
     }
 }
