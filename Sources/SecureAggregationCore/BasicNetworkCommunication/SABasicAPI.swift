@@ -125,7 +125,7 @@ public enum SABasicAPI: String, CaseIterable {
         case .finishRound1Collection:
             return restInfo(method: .post)
         case .round1ServerMessage:
-            return restInfo(method: .get)
+            return restInfo(method: .post) // TODO: Eignetlich kein post, besser als URL-parameter?
         case .advanceToRound2:
             return restInfo(method: .post)
         case .round2ClientMessage:
