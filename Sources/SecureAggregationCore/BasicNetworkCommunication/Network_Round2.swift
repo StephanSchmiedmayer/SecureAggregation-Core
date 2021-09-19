@@ -11,7 +11,7 @@ extension Network {
     public struct Round2 {
         fileprivate init() {}
         
-        public struct ClientData<Value: SAWrappedValue>: ModelWrapper {
+        public struct ClientData<Value: SAWrappedValue>: ModelWrapper, SANetworkMessage {
             public typealias WrappedModel = Model.Round2.ClientData<Value>
             
             public let wrappedValue: Model.Round2.ClientData<Value>
@@ -25,7 +25,7 @@ extension Network {
             }
         }
         
-        public struct ServerData: ModelWrapper {
+        public struct ServerData: ModelWrapper, SANetworkMessage {
             public typealias WrappedModel = Model.Round2.ServerData
             
             public let wrappedValue: Model.Round2.ServerData

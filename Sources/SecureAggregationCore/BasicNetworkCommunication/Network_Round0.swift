@@ -12,7 +12,7 @@ extension Network {
     public struct Round0 {
         fileprivate init() {}
         
-        public struct ClientData: ModelWrapper {
+        public struct ClientData: ModelWrapper, SANetworkMessage {
             public typealias WrappedModel = Model.Round0.ClientData
             
             public let publicKeyInformation: Network.PublicKeysOfUser
@@ -26,7 +26,7 @@ extension Network {
             }
         }
         
-        public struct ServerData: ModelWrapper {
+        public struct ServerData: ModelWrapper, SANetworkMessage {
             public typealias WrappedModel = Model.Round0.ServerData
             
             public let collectedData: [Network.PublicKeysOfUser]

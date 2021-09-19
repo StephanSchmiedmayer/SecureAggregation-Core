@@ -9,18 +9,12 @@ import Foundation
 import Vapor
 
 /// Protocol for any `Network.` struct that wrapps a `Model.` struct for transfer over the network
-public protocol ModelWrapper: Content {
+public protocol ModelWrapper: Codable {
     associatedtype WrappedModel
     
     init(_ wrappedModel: WrappedModel) throws
     
     func unwrap() throws -> WrappedModel
-}
-
-extension ModelWrapper {
-    public func encode() throws -> Data {
-        try JSONEncoder().encode(self)
-    }
 }
 
 extension Array where Element: ModelWrapper {

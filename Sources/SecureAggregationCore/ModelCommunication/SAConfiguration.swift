@@ -10,7 +10,7 @@ import CryptoKit
 import Vapor
 
 /// Configuration of a Secure Aggregation run
-public struct SAConfiguration<Value: SAWrappedValue>: Content {
+public struct SAConfiguration<Value: SAWrappedValue>: Content, SANetworkMessage {
     public init(numberOfUsers: Int,
                 threshold: Int,
                 modulus: Value.Modulus,
