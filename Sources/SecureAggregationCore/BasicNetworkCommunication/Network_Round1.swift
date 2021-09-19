@@ -25,6 +25,21 @@ extension Network {
             }
         }
         
+        public struct ClientDataNeededForServerData: ModelWrapper, SANetworkMessage {
+            public let userID: UserID
+            public init(_ wrappedModel: UserID) {
+                self.userID = wrappedModel
+            }
+            
+            public func unwrap() -> UserID {
+                return self.userID
+            }
+            
+            public typealias WrappedModel = UserID
+            
+            
+        }
+        
         public struct ServerData: ModelWrapper, SANetworkMessage {
             public typealias WrappedModel = Model.Round1.ServerData
             
