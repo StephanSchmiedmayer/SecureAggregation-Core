@@ -40,32 +40,68 @@ public struct SARESTInfo {
 ///
 /// Raw value represents the URL relative to the base URL of the server / URL of this API
 public enum SABasicAPI: String, CaseIterable {
-    case reset
+    /// Starts a new round of secure aggregation on the server. Only needs to be called by one client.
     case start
+    
+    /// Login the client with the server.
     case login
+    
+    /// Finish login phase on the server. Only needs to be called by one client.
     case finishLogin
+    
+    /// Download the setup information from the server to the client.
     case setup
+    
+    /// Finish setup phase on the server. Only needs to be called by one client.
     case finishSetup
+    
+    /// Upload Client message for round 0 to the server
     case round0ClientMessage
+    
+    /// Finish round0-collection phase on the server. Only needs to be called by one client.
     case finishRound0Collection
+    
+    /// Download server message for round 0
     case round0ServerMessage
+    
+    /// Finish round1 phase on the server. Only needs to be called by one client.
     case advanceToRound1
+    
+    /// Upload Client message for round 1 to the server
     case round1ClientMessage
+    
+    /// Finish round1-colleciton phase on the server. Only needs to be called by one client.
     case finishRound1Collection
+    
+    /// Download server message for round 1
     case round1ServerMessage
+    
+    /// Finish round1 phase on the server. Only needs to be called by one client.
     case advanceToRound2
+    
+    /// Upload Client message for round 2 to the server
     case round2ClientMessage
+    
+    /// Finish round2-collection phase on the server. Only needs to be called by one client.
     case finishRound2Collection
+    
+    /// Download server message for round 2
     case round2ServerMessage
+    
+    /// Finish round2 phase on the server. Only needs to be called by one client.
     case advanceToRound4
+    
+    /// Upload Client message for round 4 to the server
     case round4ClientMessage
+    
+    /// Finish round4-collection phase on the server. Only needs to be called by one client.
     case finishRound4Collection
+    
+    /// Download server message for round 4
     case round4ServerMessage
     
     public var info: SARESTInfo {
         switch self {
-        case .reset:
-            return restInfo(method: .post)
         case .start:
             return restInfo(method: .post)
         case .login:
