@@ -154,3 +154,67 @@ public enum SABasicAPI: String, CaseIterable {
         return SARESTInfo(differentiatingRelativeURL: self.rawValue, method: method)
     }
 }
+
+extension SABasicAPI: Comparable {
+    /// Induces an ordering of SABasicAPI cases.
+    /// Increases from 0 (`waiting`) in order of the protocol, aborted is -1.
+    /// All cases have unique values
+    ///
+    /// - Important:
+    ///     Do not rely on the raw value being associated with a specific value (because of changes to this API).
+    ///     Use only to compare the order of two states or determine if two states are equal except associated values.
+    public var orderingNumber: Int {
+        switch self {
+        case .start:
+            return 0
+        case .login:
+            return 1
+        case .finishLogin:
+            return 2
+        case .setup:
+            return 3
+        case .finishSetup:
+            return 4
+        case .round0ClientMessage:
+            return 5
+        case .finishRound0Collection:
+            return 6
+        case .round0ServerMessage:
+            return 7
+        case .advanceToRound1:
+            return 8
+        case .round1ClientMessage:
+            return 9
+        case .finishRound1Collection:
+            return 10
+        case .round1ServerMessage:
+            return 11
+        case .advanceToRound2:
+            return 12
+        case .round2ClientMessage:
+            return 13
+        case .finishRound2Collection:
+            return 14
+        case .round2ServerMessage:
+            return 15
+        case .advanceToRound4:
+            return 16
+        case .round4ClientMessage:
+            return 17
+        case .finishRound4Collection:
+            return 18
+        case .round4ServerMessage:
+            return 19
+        }
+    }
+    
+    public static func < (lhs: SABasicAPI, rhs: SABasicAPI) -> Bool {
+        lhs.orderingNumber < rhs.orderingNumber
+    }
+}
+
+extension SABasicAPI: CustomStringConvertible {
+    public var description: String {
+        self.rawValue
+    }
+}
