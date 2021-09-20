@@ -39,7 +39,7 @@ public struct SARESTInfo {
 /// Definition of the basic (REST) API for the BasicSecureAggregationController
 ///
 /// Raw value represents the URL relative to the base URL of the server / URL of this API
-public enum SABasicAPI: String, CaseIterable {
+public enum SABasicAPI: String, CaseIterable, Hashable {
     /// Starts a new round of secure aggregation on the server. Only needs to be called by one client.
     case start
     
