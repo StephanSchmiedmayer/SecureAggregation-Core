@@ -14,32 +14,32 @@ public struct SAInt: SAWrappedValue {
     public typealias Modulus = Int
     
     let value: Value
-    
-    public init(_ value: Value) {
-        self.value = value
+        
+    public init(_ value: Value, mod: Modulus) {
+        self.value = value % mod
     }
 
     public func add(_ rhs: SAInt, mod: Int) -> SAInt {
-        SAInt((value + rhs.value) % mod)
+        SAInt((value + rhs.value), mod: mod)
     }
     
     public func sub(_ rhs: SAInt, mod: Int) -> SAInt {
-        SAInt((value + rhs.value) % mod)
+        SAInt((value + rhs.value), mod: mod)
     }
     
     static public var zero: SAInt {
-        SAInt(0)
+        SAInt(0, mod: 1)
     }
     
-    public func cancelling(ownID: UserID, otherID: UserID) -> SAInt {
+    public func cancelling(ownID: UserID, otherID: UserID, mod: Modulus) -> SAInt {
         guard ownID != otherID else {
-            return SAInt(0)
+            return SAInt(0, mod: mod)
         }
-        return SAInt(value * (ownID < otherID ? 1 : -1))
+        return SAInt(value * (ownID < otherID ? 1 : -1), mod: mod)
     }
     
     public static func mask(forSeed seed: SharedSecret, mod: Int) -> SAInt {
-        SAInt(seed.hashValue % mod)
+        SAInt(seed.hashValue, mod: mod)
     }
     
     public var description: String {

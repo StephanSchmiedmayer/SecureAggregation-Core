@@ -47,6 +47,15 @@
         }
       },
       {
+        "package": "ShamirSecretShare",
+        "repositoryURL": "git@github.com:StephanSchmiedmayer/SecretShare.swift.git",
+        "state": {
+          "branch": "master",
+          "revision": "6745b2416ad16c0ba29e121773a26296928389ac",
+          "version": null
+        }
+      },
+      {
         "package": "swift-backtrace",
         "repositoryURL": "https://github.com/swift-server/swift-backtrace.git",
         "state": {

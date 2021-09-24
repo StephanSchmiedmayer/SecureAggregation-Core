@@ -16,7 +16,8 @@ public protocol SAWrappedValue: Content {
     /// Value of the modulus defined for the type
     associatedtype Modulus: Content
     
-    init(_ value: Value)
+    /// Initializes self with the value. Applies the modulus if necessary. Does not store the modulus
+    init(_ value: Value, mod: Modulus)
         
     // MARK: - arithmetic operations
     // TODO: real arithmetic description
@@ -35,14 +36,13 @@ public protocol SAWrappedValue: Content {
     /// Needs ot take into account ownID and otherID so that for any valid  `seed`, `mod`, `a`, `b`:
     ///
     ///     let mask = mask(seed, mod)
-    ///     let maskA = mask.cancelling(ownID: a, otherID: b)
-    ///     let maskB = mask.cancelling(ownID: b, otherID: a)
+    ///     let maskA = mask.cancelling(ownID: a, otherID: b, mod: mod)
+    ///     let maskB = mask.cancelling(ownID: b, otherID: a, mod: mod)
     ///     let zero = maskA.add(maskB, mod)
     ///     value.add(zero, mod) == value
     ///
     /// holds (meaning zero is a representation of 0 / masks cancel each other out). This is curtial to SecureAggregation.
-    ///
-    func cancelling(ownID: UserID, otherID: UserID) -> Self
+    func cancelling(ownID: UserID, otherID: UserID, mod: Modulus) -> Self
     
     /// Creates a mask from a seed
     ///
