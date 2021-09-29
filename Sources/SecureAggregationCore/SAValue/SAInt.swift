@@ -16,7 +16,8 @@ public struct SAInt: SAWrappedValue {
     let value: Value
         
     public init(_ value: Value, mod: Modulus) {
-        self.value = value % mod
+        let modValue = value % mod
+        self.value = modValue + (modValue < 0 ? mod : 0)
     }
 
     public func add(_ rhs: SAInt, mod: Int) -> SAInt {
