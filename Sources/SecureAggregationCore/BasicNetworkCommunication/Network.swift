@@ -79,7 +79,7 @@ public struct Network {
         public func unwrap() throws -> Model.PublicKeysOfUser {
             return try Model.PublicKeysOfUser(userID: self.userID,
                                               c_publicKey: SAPubKeyCurve.KeyAgreement.PublicKey(rawRepresentation: c_publicKeyData),
-                                              s_publicKey: SAPubKeyCurve.KeyAgreement.PublicKey(rawRepresentation: c_publicKeyData))
+                                              s_publicKey: SAPubKeyCurve.KeyAgreement.PublicKey(rawRepresentation: s_publicKeyData))
         }
     }
     
