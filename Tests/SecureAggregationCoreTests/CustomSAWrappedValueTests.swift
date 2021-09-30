@@ -12,6 +12,12 @@ import XCTest
 // Make sure SAWrappedValue conforms to TestableSAWrappedValue (e.g. via fileprivate extension)
 
 extension SAInt: TestableSAWrappedValue {
+    static var combinationsToTest: [([Int], Int)] {
+        [
+//        ([], 1)
+        ]
+    }
+    
     static var modulus: Int {
         307
     }
@@ -27,5 +33,19 @@ class SAIntTest: SecureAggregationWrappedValueTests<SAInt> {
         XCTAssertEqual(SAInt(10, mod: 10), SAInt(0, mod: 10))
         XCTAssertEqual(SAInt(-1, mod: 10), SAInt(9, mod: 10))
         XCTAssertEqual(SAInt(-11, mod: 10), SAInt(9, mod: 10))
+    }
+    
+    func testAddition() {
+        XCTAssertEqual(SAInt(1, mod: 10).add(SAInt(9, mod: 10), mod: 10), SAInt(0, mod: 10))
+        XCTAssertEqual(SAInt(2, mod: 10).add(SAInt(7, mod: 10), mod: 10), SAInt(9, mod: 10))
+        XCTAssertEqual(SAInt(0, mod: 10).add(SAInt(1, mod: 10), mod: 10), SAInt(1, mod: 10))
+        XCTAssertEqual(SAInt(9, mod: 10).add(SAInt(9, mod: 10), mod: 10), SAInt(8, mod: 10))
+    }
+    
+    func testSubtraction() {
+        XCTAssertEqual(SAInt(9, mod: 10).sub(SAInt(1, mod: 10), mod: 10), SAInt(8, mod: 10))
+        XCTAssertEqual(SAInt(9, mod: 10).sub(SAInt(5, mod: 10), mod: 10), SAInt(4, mod: 10))
+        XCTAssertEqual(SAInt(3, mod: 10).sub(SAInt(5, mod: 10), mod: 10), SAInt(8, mod: 10))
+        XCTAssertEqual(SAInt(0, mod: 10).sub(SAInt(1, mod: 10), mod: 10), SAInt(9, mod: 10))
     }
 }

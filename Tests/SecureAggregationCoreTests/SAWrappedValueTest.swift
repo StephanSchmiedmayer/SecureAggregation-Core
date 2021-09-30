@@ -17,8 +17,11 @@ protocol TestableSAWrappedValue: SAWrappedValue, Equatable {
     ///
     /// Must be reasonably big enough for testing.
     static var modulus: Modulus { get }
+    
+    static var combinationsToTest: [([Value], Modulus)] { get }
 }
 
+/// A template for testing metamorphic relashionships that must hold for all instances of SAWrappedValue.
 class SecureAggregationWrappedValueTests<Value: TestableSAWrappedValue>: XCTestCase {
     // Sample userIDs usable
     private let userIDa: UserID = 0
@@ -44,7 +47,7 @@ class SecureAggregationWrappedValueTests<Value: TestableSAWrappedValue>: XCTestC
 
     func testCancellingMask() {
         let mask = Value.mask(forSeed: getSharedSecret(), mod: mod)
-        let maskA = mask.cancelling(ownID: userIDa, otherID: userIDa, mod: mod)
+        let maskA = mask.cancelling(ownID: userIDa, otherID: userIDb, mod: mod)
         let maskB = mask.cancelling(ownID: userIDb, otherID: userIDa, mod: mod)
         let zero = maskA.add(maskB, mod: mod)
         XCTAssertEqual(zero, Value.zero)

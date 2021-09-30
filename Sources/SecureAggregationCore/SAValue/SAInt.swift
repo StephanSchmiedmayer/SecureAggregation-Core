@@ -25,7 +25,7 @@ public struct SAInt: SAWrappedValue {
     }
     
     public func sub(_ rhs: SAInt, mod: Int) -> SAInt {
-        SAInt((value + rhs.value), mod: mod)
+        SAInt((value - rhs.value), mod: mod)
     }
     
     static public var zero: SAInt {
