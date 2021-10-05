@@ -12,7 +12,7 @@ extension Model {
         fileprivate init() {}
         
         /// Round 1 message from Client to Server
-        public struct ClientData {
+        public struct ClientData: Equatable {
             public let encryptedShares: [Model.EncryptedShare]
             
             public init(encryptedShares: [Model.EncryptedShare]) {
@@ -20,7 +20,7 @@ extension Model {
             }
         }
         
-        public struct ServerData {
+        public struct ServerData: Equatable {
             public let encryptedServerMessagesForMe: [Model.EncryptedShare]
             
             public init(encryptedServerMessagesForMe: [Model.EncryptedShare]) {

@@ -8,11 +8,14 @@
 import Foundation
 import ShamirSecretShare
 
+/// Namespace for all structures used in the API of the model-Layer
+///
+/// Equatability should only be compared within a single execution of the Protocol, for comparison of any strucst between protocols use a new struct which includes the origin round of the struct
 public struct Model {
     fileprivate init() {}
     
     /// Encrypted share from user `u` to user `v`
-    public struct EncryptedShare {
+    public struct EncryptedShare: Equatable {
         /// Encrypted shares (`EncryptedRound1ClientDataWrapper`)
         public let e_uv: SASymmetricCipher.SealedBox
         /// User that encrypted the shares
@@ -26,8 +29,8 @@ public struct Model {
             self.v = v
         }
     }
-    
-    public struct SharesWrapper: Codable {
+        
+    public struct SharesWrapper: Codable, Equatable {
         public let u: UserID
         public let v: UserID
         public let s_uv_privateKeyShare: Secret.Share
@@ -41,7 +44,7 @@ public struct Model {
         }
     }
     
-    public struct AdressedShare: Codable {
+    public struct AdressedShare: Codable, Equatable {
         public let origin: UserID
         public let destination: UserID
         public let share: Secret.Share
@@ -54,7 +57,7 @@ public struct Model {
     }
     
     /// Public keys of the user with `UserID` `userID`
-    public struct PublicKeysOfUser {
+    public struct PublicKeysOfUser: Equatable {
         /// User who ones the private keys corresponding to the public keys
         public let userID: UserID
         public let c_publicKey: SAPubKeyCurve.KeyAgreement.PublicKey
@@ -69,7 +72,7 @@ public struct Model {
         }
     }
     
-    public struct MaskedValueFromUser<Value: SAWrappedValue>: Codable {
+    public struct MaskedValueFromUser<Value: SAWrappedValue>: Codable, Equatable {
         public let maskedValue: Value
         public let origin: UserID
         

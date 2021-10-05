@@ -12,19 +12,19 @@ extension Model {
         private init() {}
         
         public class ClientDataBuilder {
-            private(set) var s_uv: [AdressedShare]
-            private(set) var b_uv: [AdressedShare]
+            private(set) var s_uv: [Model.AdressedShare]
+            private(set) var b_uv: [Model.AdressedShare]
             
             public init() {
                 s_uv = []
                 b_uv = []
             }
 
-            public func add_s_uv(_ share: AdressedShare) {
+            public func add_s_uv(_ share: Model.AdressedShare) {
                 s_uv.append(share)
             }
             
-            public func add_b_uv(_ share: AdressedShare) {
+            public func add_b_uv(_ share: Model.AdressedShare) {
                 b_uv.append(share)
             }
             
@@ -34,17 +34,17 @@ extension Model {
         }
 
         
-        public struct ClientData: Codable {
-            public let s_uv: [AdressedShare]
-            public let b_uv: [AdressedShare]
+        public struct ClientData: Codable, Equatable {
+            public let s_uv: [Model.AdressedShare]
+            public let b_uv: [Model.AdressedShare]
             
-            public init(s_uv: [AdressedShare], b_uv: [AdressedShare]) {
+            public init(s_uv: [Model.AdressedShare], b_uv: [Model.AdressedShare]) {
                 self.s_uv = s_uv
                 self.b_uv = b_uv
             }
         }
         
-        public struct ServerData<Value: SAWrappedValue>: Codable {
+        public struct ServerData<Value: SAWrappedValue>: Codable, Equatable {
             public let value: Value
             
             public init(value: Value) {

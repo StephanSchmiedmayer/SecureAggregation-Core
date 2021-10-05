@@ -14,7 +14,7 @@ extension Model {
         /// Round 0 Message from Client to Server
         ///
         /// - Important: Gets completely forwarded in `Round0.Server`
-        public struct ClientData {
+        public struct ClientData: Equatable {
             public let publicKeyInformation: Model.PublicKeysOfUser
             
             public init(publicKeyInformation: Model.PublicKeysOfUser) {
@@ -23,7 +23,7 @@ extension Model {
         }
         
         /// Round 0 Message from Server to Client
-        public struct ServerData {
+        public struct ServerData: Equatable {
             public let collectedData: [Model.PublicKeysOfUser]
             
             public init(collectedData: [Model.PublicKeysOfUser]) {

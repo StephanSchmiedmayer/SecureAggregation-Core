@@ -11,7 +11,7 @@ extension Model {
     public struct Round2 {
         private init() {}
         
-        public struct ClientData<Value: SAWrappedValue>: Codable {
+        public struct ClientData<Value: SAWrappedValue>: Codable, Equatable {
             public let wrappedValue: MaskedValueFromUser<Value>
             
             public init(wrappedValue: MaskedValueFromUser<Value>) {
@@ -19,7 +19,7 @@ extension Model {
             }
         }
         
-        public struct ServerData: Codable {
+        public struct ServerData: Codable, Equatable {
             public let remainingUsers: [UserID]
             
             public init(remainingUsers: [UserID]) {

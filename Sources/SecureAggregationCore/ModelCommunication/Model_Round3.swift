@@ -10,11 +10,11 @@ import Vapor
 public struct Round3 {
     private init() {}
     
-    public struct Client: Content, Hashable {
+    public struct Client: Content, Hashable, Equatable {
         public let id: Int
     }
     
-    public struct Server: Content {
+    public struct Server: Content, Equatable {
         
     }
 }
