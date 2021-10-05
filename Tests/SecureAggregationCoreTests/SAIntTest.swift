@@ -12,16 +12,6 @@ import XCTest
 // Make sure SAWrappedValue conforms to TestableSAWrappedValue (e.g. via fileprivate extension)
 
 extension SAInt: TestableSAWrappedValue {
-    static var combinationsToTest: [([Int], Int)] {
-        [
-//        ([], 1)
-        ]
-    }
-    
-    static var modulus: Int {
-        307
-    }
-    
     public static func == (lhs: SAInt, rhs: SAInt) -> Bool {
         lhs.value == rhs.value
     }

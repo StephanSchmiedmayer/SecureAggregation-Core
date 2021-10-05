@@ -10,7 +10,7 @@ import CryptoKit
 import Vapor
 
 /// A wrapper providing all necessary operations for a secure aggregation
-public protocol SAWrappedValue: Content {
+public protocol SAWrappedValue: Content, Equatable {
     /// Valuetype that gets wrapped
     associatedtype Value: Content
     /// Value of the modulus defined for the type
@@ -21,12 +21,22 @@ public protocol SAWrappedValue: Content {
         
     // MARK: - arithmetic operations
     // TODO: real arithmetic description
-    /// Modulo addition
+    
+    /// Modulo addition of `self` with `rhs` modulo `mod`
+    ///
+    /// Following properties must hold for addition:
+    /// - Associativity
+    /// - Commutativity
     func add(_ rhs: Self, mod: Modulus) -> Self
-    /// Modulo subtraction
+    
+    /// Modulo subtraction of `rhs` from `self` modulo `mod` (`self` - `rhs` mod `mod`)
+    ///
+    /// Following properties must hold for addition:
+    /// - Associativity
+    /// - Commutativity
     func sub(_ rhs: Self, mod: Modulus) -> Self
     
-    /// Representation of Zero
+    /// Representation of Zero. Must be a neutral element
     static var zero: Self { get }
     
     // MARK: - cryptographic operations
