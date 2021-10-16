@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import ShamirSecretShare
+import SwiftySSS
 
 /// Namespace for all structures used in the API of the model-Layer
 ///
