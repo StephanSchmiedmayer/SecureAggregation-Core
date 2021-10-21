@@ -39,8 +39,19 @@ public struct SAInt: SAWrappedValue {
         return SAInt(value * (ownID < otherID ? 1 : -1), mod: mod)
     }
     
-    public static func mask(forSeed seed: SharedSecret, mod: Int) -> SAInt {
-        SAInt(seed.hashValue, mod: mod)
+//    public static func mask(forKey key: SymmetricKey, mod: Int, nonce: SASymmetricCipher.Nonce = .init()) throws -> SAInt {
+    public static func mask(forKey key: SymmetricKey, mod: Int) throws -> SAInt {
+        let internalNonce = try SASymmetricCipher.Nonce(data: Data(hex: "671ba851014f2a303d69d4c9")!)
+        var value = Int64()
+        let encryptedZero = try SASymmetricCipher.seal(
+            Data(bytes: &value,
+                 count: MemoryLayout.size(ofValue: value)),
+            using: key,
+            nonce: internalNonce)
+        let PRValue = encryptedZero.ciphertext.withUnsafeBytes { bytes in
+            Int(bytes.load(as: Int32.self))
+        }
+        return SAInt(PRValue, mod: mod)
     }
     
     public var description: String {
