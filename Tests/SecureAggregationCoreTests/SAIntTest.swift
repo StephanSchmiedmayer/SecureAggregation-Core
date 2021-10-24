@@ -51,7 +51,7 @@ class SAIntTest: SecureAggregationWrappedValueTests<SAInt> {
 //        print(privateKey1.rawRepresentation.base64EncodedString())
 //        print(privateKey2.rawRepresentation.base64EncodedString())
 
-        let sharedSecret = try privateKey1.sharedSecretFromKeyAgreement(with: privateKey2.publicKey)
+        let sharedSecret = try privateKey1.sharedSecretFromKeyAgreement(with: privateKey1.publicKey)
 //        let symmetricKey = sharedSecret.hkdfDerivedSymmetricKey(
 //            using: SA_HKDF_HashFunction.self,
 //            salt: "LeagueOfLegends".data(using: .utf8)!,
