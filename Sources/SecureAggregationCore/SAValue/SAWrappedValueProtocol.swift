@@ -57,7 +57,7 @@ public protocol SAWrappedValue: Content, Equatable {
     /// Creates a mask from a seed
     ///
     /// - Important: Ciritical for Security of the protocol
-    static func mask(forKey key: SymmetricKey, mod: Modulus) throws -> Self
+    static func mask(sharedSecret: SharedSecret, salt: Data, mod: Modulus) throws -> Self
     // TODO: Add nonce for true PRG, share Nonce with public keys
 //    static func mask(forKey key: SymmetricKey, mod: Modulus, nonce: SASymmetricCipher.Nonce) throws -> Self
 

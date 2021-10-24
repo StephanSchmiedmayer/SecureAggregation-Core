@@ -40,7 +40,12 @@ public struct SAInt: SAWrappedValue {
     }
     
 //    public static func mask(forKey key: SymmetricKey, mod: Int, nonce: SASymmetricCipher.Nonce = .init()) throws -> SAInt {
-    public static func mask(forKey key: SymmetricKey, mod: Int) throws -> SAInt {
+    public static func mask(sharedSecret: SharedSecret, salt: Data, mod: Int) throws -> SAInt {
+        let key = sharedSecret.hkdfDerivedSymmetricKey(
+            using: SA_HKDF_HashFunction.self,
+            salt: salt,
+            sharedInfo: Data(),
+            outputByteCount: SASymmetricCipherKeyByteCount)
         let internalNonce = try SASymmetricCipher.Nonce(data: Data(hex: "671ba851014f2a303d69d4c9")!)
         var value = Int64()
         let encryptedZero = try SASymmetricCipher.seal(

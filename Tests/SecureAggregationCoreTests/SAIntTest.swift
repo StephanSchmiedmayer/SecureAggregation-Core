@@ -52,15 +52,15 @@ class SAIntTest: SecureAggregationWrappedValueTests<SAInt> {
 //        print(privateKey2.rawRepresentation.base64EncodedString())
 
         let sharedSecret = try privateKey1.sharedSecretFromKeyAgreement(with: privateKey2.publicKey)
-        let symmetricKey = sharedSecret.hkdfDerivedSymmetricKey(
-            using: SA_HKDF_HashFunction.self,
-            salt: "LeagueOfLegends".data(using: .utf8)!,
-            sharedInfo: Data(),
-            outputByteCount: SASymmetricCipherKeyByteCount)
+//        let symmetricKey = sharedSecret.hkdfDerivedSymmetricKey(
+//            using: SA_HKDF_HashFunction.self,
+//            salt: "LeagueOfLegends".data(using: .utf8)!,
+//            sharedInfo: Data(),
+//            outputByteCount: SASymmetricCipherKeyByteCount)
         
 //        let nonce = try SASymmetricCipher.Nonce(data: Data(hex: "671ba851014f2a303d69d4c9")!)
         
-        let mask = try SAInt.mask(forKey: symmetricKey, mod: 1000000)
+        let mask = try SAInt.mask(sharedSecret: sharedSecret, salt: "LeagueOfLegends".data(using: .utf8)!, mod: 1000000)
         print(mask)
     }
     
